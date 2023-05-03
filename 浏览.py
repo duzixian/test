@@ -1,4 +1,3 @@
-%%writefile c.py
 import os,time
 url = str(os.environ.get('url'))
 #print(url)
