@@ -4,7 +4,7 @@ url = str(os.environ.get('url'))
 value = str(os.environ.get('value'))
 cookie = {"name": "__Host-KAGGLEID", "value": value}
 
-from IPython.display import Image
+#from IPython.display import Image
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
@@ -60,7 +60,8 @@ def autofwawt():
 saveimg()
 
 ##part2##
-import threading
-t = threading.Thread(target=autofwawt)
-t.daemon = True
-t.start()
+autofwawt()
+#import threading
+#t = threading.Thread(target=autofwawt)
+#t.daemon = True
+#t.start()
