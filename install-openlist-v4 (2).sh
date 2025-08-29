@@ -6,7 +6,8 @@
 #    bash openlist.sh 4.11       # 指定版 4.11
 # ------------------------------------------------------------
 
-set -e
+set -ex
+exec 2>&1
 
 # ------------- 颜色输出 -------------
 RED_COLOR='\e[1;31m'; GREEN_COLOR='\e[1;32m'; YELLOW_COLOR='\e[1;33m'; RES='\e[0m'
@@ -46,13 +47,15 @@ INSTALL_PATH="/opt/openlist"
 mkdir -p "$INSTALL_PATH"
 
 # ------------- 磁盘空间检查 -------------
+# ------------- 新版：静默检查磁盘空间 -------------
 check_disk_space() {
-  local tmp_mb=$(df /tmp | awk 'NR==2{print $4}')
-  local install_mb=$(df "$(dirname "$INSTALL_PATH")" | awk 'NR==2{print $4}')
-  [ "$tmp_mb" -lt 102400 ] || [ "$install_mb" -lt 102400 ] && {
+  local tmp_mb=$(df /tmp 2>/dev/null | awk 'NR==2{print $4}' || echo 0)
+  local install_mb=$(df "$(dirname "$INSTALL_PATH")" 2>/dev/null | awk 'NR==2{print $4}' || echo 0)
+  if [ "$tmp_mb" -lt 102400 ] || [ "$install_mb" -lt 102400 ]; then
     echo -e "${YELLOW_COLOR}⚠ 磁盘空间可能不足，继续安装...${RES}"
-  }
+  fi
 }
+
 check_disk_space
 
 # ------------- 下载地址构造 -------------
