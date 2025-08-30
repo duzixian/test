@@ -59,9 +59,9 @@ check_disk_space
 
 # ------------- 下载地址构造 -------------
 if [ "$TARGET_TAG" = "latest" ]; then
-  DOWNLOAD_URL="https://github.com/OpenListTeam/OpenList/releases/latest/download/openlist-linux-musl-$ARCH.tar.gz"
+  DOWNLOAD_URL="https://ghfast.top/https://github.com/OpenListTeam/OpenList/releases/latest/download/openlist-linux-musl-$ARCH.tar.gz"
 else
-  DOWNLOAD_URL="https://github.com/OpenListTeam/OpenList/releases/download/${TARGET_TAG}/openlist-linux-musl-$ARCH.tar.gz"
+  DOWNLOAD_URL="https://ghfast.top/https://github.com/OpenListTeam/OpenList/releases/download/${TARGET_TAG}/openlist-linux-musl-$ARCH.tar.gz"
 fi
 
 # ------------- 下载 & 解压 -------------
