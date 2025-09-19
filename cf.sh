@@ -1,6 +1,7 @@
 cf_init() {
-curl -fsSL -o cloudflared https://ghfast.top/https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
-chmod +x cloudflared
+wget https://ghfast.top/https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
+mv cloudflared-linux-amd64 /usr/local/bin/cloudflared
+chmod +x /usr/local/bin/cloudflared
 }
 
 cf_url() {
@@ -39,4 +40,5 @@ configure_ssh() {
     #else
         #echo "UsePAM no" >> /etc/ssh/sshd_config
     #fi
+    systemctl enable --now ssh
 }
